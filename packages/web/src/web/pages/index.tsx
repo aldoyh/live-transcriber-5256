@@ -1,1 +1,1 @@
-export { default } from '../components/podcast-app';
+export { default } from '../components/transcription-app';
