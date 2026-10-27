@@ -28,7 +28,7 @@ async def main():
   await page.get_by_role('button',name='إعادة المحاولة',exact=True).wait_for();await page.get_by_role('button',name='إعادة المحاولة',exact=True).click()
   await page.wait_for_timeout(500);assert len(calls)>=2;print('Failed chunk retained and retry attempted; no invented transcript.')
   await page.get_by_role('button',name='تجاهل المقاطع',exact=True).click()
-  await page.get_by_role('button',name='تفريغ جديد',exact=True).click()
+  await page.get_by_role('button',name='جلسة جديدة',exact=True).click()
   assert await page.get_by_label('رابط يوتيوب',exact=True).input_value()==''
   print('Discard failed queue and new-session reset verified.')
   await b.close()

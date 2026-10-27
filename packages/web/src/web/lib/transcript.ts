@@ -30,7 +30,13 @@ export function clock(value: number) {
   return `${String(Math.floor(n / 60)).padStart(2, "0")}:${String(n % 60).padStart(2, "0")}`;
 }
 export function hasSessionContent(session: Session) {
-  return Boolean(session.url || session.seconds || session.segments.length || session.title !== "جلسة جديدة" || session.mode === "video");
+  return Boolean(
+    session.url ||
+    session.seconds ||
+    session.segments.length ||
+    session.title !== "جلسة جديدة" ||
+    session.mode === "video",
+  );
 }
 function stamp(value: number) {
   const ms = Math.round(value * 1000);

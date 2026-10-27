@@ -15,4 +15,10 @@
 - [x] Web Audio resume initiated within click gesture; setup phase and bounded startup waits added
 - [x] Native Chrome picker manually operated with OS clicks; real local-tab audio -> live API -> Arabic succeeded with default autoplay and no capture auto-selection/permission override flags
 - [x] Error/retry regression, iframe-to-standalone Start, build and lint passed after changes
-Limitations: user's environment and actual YouTube livestream are not verified. Manual native picker test uses a local audio-playing tab. Transcripts update per ~12s chunk plus inference latency. SRT times are session-relative approximate chunk timings. Audio not retained by app; text locally stored. AI gateway usage costs apply.
+- [x] Professional layout: neutral charcoal, subtle red accents, direct Arabic labels; promotional containers and commercial badge removed
+- [x] SQLite/libSQL tables applied: session snapshots and operational activity, including transcript revision history and AI processing details
+- [x] Device-scoped hashed workspace capability; all session/activity reads and writes isolated
+- [x] Local-session migration, persistent outbox, sync status and retry; activity detail view, pagination and JSON export
+- [x] Real database integration test passed: persistence, restoration, revision audit, workspace isolation, offline retry and responsive mobile without overflow
+- [x] Native Chrome capture -> live AI -> Arabic passed after redesign
+Limitations: user's environment and actual YouTube livestream are not verified. Manual native picker test uses a local audio-playing tab. Transcripts update per ~12s chunk plus inference latency. SRT times are session-relative approximate chunk timings. Audio not retained by app; text and operational activity now stored in server-side SQLite. The browser-held workspace key is required for subsequent access. AI gateway usage costs apply.

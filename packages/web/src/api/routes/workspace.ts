@@ -67,7 +67,14 @@ export const workspace = {
       .where(and(eq(sessions.workspace, key), eq(sessions.id, input.session.id)))
       .limit(1);
     const value = { ...input.session, workspace: key, updated: Date.now() };
-    if (previous && previous.title === value.title && previous.url === value.url && previous.mode === value.mode && previous.seconds === value.seconds && JSON.stringify(previous.segments) === JSON.stringify(value.segments))
+    if (
+      previous &&
+      previous.title === value.title &&
+      previous.url === value.url &&
+      previous.mode === value.mode &&
+      previous.seconds === value.seconds &&
+      JSON.stringify(previous.segments) === JSON.stringify(value.segments)
+    )
       return { saved: true, updated: previous.updated };
     const changes = input.session.segments
       .filter((s) => !previous || previous.segments.find((p) => p.id === s.id)?.text !== s.text)
@@ -94,25 +101,23 @@ export const workspace = {
             updated: value.updated,
           },
         }),
-      db
-        .insert(activity)
-        .values({
-          workspace: key,
-          eventId,
-          sessionId: value.id,
-          action: previous ? "session.updated" : "session.saved",
-          occurred: value.updated,
-          received: value.updated,
-          details: {
-            title: value.title,
-            previousTitle: previous?.title ?? null,
-            url: value.url,
-            mode: value.mode,
-            seconds: value.seconds,
-            segmentCount: value.segments.length,
-            changedSegments: changes,
-          },
-        }),
+      db.insert(activity).values({
+        workspace: key,
+        eventId,
+        sessionId: value.id,
+        action: previous ? "session.updated" : "session.saved",
+        occurred: value.updated,
+        received: value.updated,
+        details: {
+          title: value.title,
+          previousTitle: previous?.title ?? null,
+          url: value.url,
+          mode: value.mode,
+          seconds: value.seconds,
+          segmentCount: value.segments.length,
+          changedSegments: changes,
+        },
+      }),
     ]);
     return { saved: true, updated: value.updated };
   }),
